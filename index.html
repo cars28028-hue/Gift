@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هدية خاصة ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #31103f);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .heart-icon {
+            font-size: 45px;
+            animation: pulse 1.5s infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: #f43f5e;
+        }
+
+        p.sub-title {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .audio-section {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 15px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+        }
+
+        .lyrics-box {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            max-height: 220px;
+            overflow-y: auto;
+            border: 1px stroke rgba(255, 255, 255, 0.05);
+            line-height: 1.9;
+            font-size: 15px;
+            color: #f1f5f9;
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        /* Scrollbar styling */
+        .lyrics-box::-webkit-scrollbar {
+            width: 5px;
+        }
+        .lyrics-box::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .footer-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #e11d48, #9333ea);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .footer-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="heart-icon">❤️</div>
+        <!-- اكتب اسم الشخص هنا -->
+        <h1>إلى: [اسم الشخص]</h1>
+        <p class="sub-title">إهداء خاص من القلب ✨</p>
+
+        <!-- مشغل الصوت -->
+        <div class="audio-section">
+            <!-- استبدل song.mp3 برابط أغنيتك أو ملف الصوت -->
+            <audio controls src="song.mp3"></audio>
+        </div>
+
+        <!-- كلمات الأغنية -->
+        <div class="lyrics-box">
+[اكتب كلمات الأغنية هنا،
+كل سطر في السطر الخاص به]
+        </div>
+
+        <button class="footer-btn" onclick="alert('أتمنى لك يوماً سعيداً! ❤️')">ضغط هنا لمفاجأة</button>
+    </div>
+
+</body>
+</html>
