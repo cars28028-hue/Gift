@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>هدية لسارا 🎀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/framer-motion@10.18.0/dist/framer-motion.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<style>
+  :root {
+    --bg1: #fff0f5; --bg2: #ffd6e4; --card: #ffffff; --ink: #7a2e4d;
+    --pink: #ffb6c1; --accent: #ff5c8a; --accent2: #ff8fab; --float: #ff9ebb;
+    --shadow: rgba(255, 105, 150, .28);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg1: #2b1521; --bg2: #3d1d2e; --card: #4a2336; --ink: #ffe3ec;
+      --pink: #ff9ebb; --accent: #ff6f9a; --accent2: #ff8fab; --float: #ff7da6;
+      --shadow: rgba(0, 0, 0, .45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg1: #2b1521; --bg2: #3d1d2e; --card: #4a2336; --ink: #ffe3ec;
+    --pink: #ff9ebb; --accent: #ff6f9a; --accent2: #ff8fab; --float: #ff7da6;
+    --shadow: rgba(0, 0, 0, .45);
+  }
+  html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; height: 100%; color: var(--ink); overflow-x: hidden;
+    background: linear-gradient(160deg, var(--bg1), var(--bg2));
+    font-family: "Baloo Bhaijaan 2", Tahoma, "Segoe UI", system-ui, sans-serif;
+  }
+  #root { min-height: 100%; }
+  .card-bg { background: var(--card); box-shadow: 0 18px 50px var(--shadow); border: 4px solid var(--pink); border-radius: 2.5rem; }
+  .btn {
+    font-family: inherit; font-weight: 800; font-size: 1.35rem; line-height: 1;
+    padding: .9rem 2.4rem; min-width: 7.5rem; border-radius: 9999px; cursor: pointer;
+    border: 3px solid var(--accent); -webkit-tap-highlight-color: transparent;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--accent2), var(--accent)); color: #fff; box-shadow: 0 8px 20px var(--shadow); }
+  .btn-soft { background: var(--card); color: var(--accent); box-shadow: 0 6px 16px var(--shadow); }
+  .headline { font-weight: 800; font-size: clamp(1.7rem, 6vw, 2.6rem); line-height: 1.5; color: var(--ink); }
+  .float-item { position: fixed; color: var(--float); pointer-events: none; user-select: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+(function () {
+  var h = htm.bind(React.createElement);
+  var FM = window.Motion || window.FramerMotion;
+  var motion = FM.motion, AnimatePresence = FM.AnimatePresence;
+  var useState = React.useState, useRef = React.useRef, useMemo = React.useMemo, useEffect = React.useEffect;
+
+  // ✨ Replace this with any video URL (or your own file path) to change the gift video.
+  var VIDEO_SRC = "video.mp4";
+
+  var GLYPHS = ["♥", "★", "♡", "✦", "✿"];
+
+  function Floaters() {
+    var items = useMemo(function () {
+      return Array.from({ length: 22 }, function (_, i) {
+        return {
+          id: i, g: GLYPHS[i % GLYPHS.length],
+          left: (i * 37 + 11) % 100, top: (i * 53 + 7) % 100,
+          size: 16 + ((i * 13) % 26), dur: 5 + (i % 5) * 1.3, delay: (i % 7) * 0.5,
+          op: 0.25 + (i % 4) * 0.1
+        };
+      });
+    }, []);
+    return h`<div aria-hidden="true" style=${{ position: "fixed", inset: 0, overflow: "hidden", zIndex: 0 }}>
+      ${items.map(function (it) {
+        return h`<${motion.span} key=${it.id} className="float-item"
+          style=${{ left: it.left + "%", top: it.top + "%", fontSize: it.size, opacity: it.op }}
+          animate=${{ y: [0, -28, 0], x: [0, 10, 0], rotate: [-12, 12, -12], scale: [1, 1.15, 1] }}
+          transition=${{ duration: it.dur, delay: it.delay, repeat: Infinity, ease: "easeInOut" }}>${it.g}<//>`;
+      })}
+    </div>`;
+  }
+
+  function Bow(props) {
+    return h`<${motion.svg} viewBox="0 0 120 80" width="96" height="64" aria-hidden="true"
+      style=${{ position: "absolute", top: -34, right: "50%", marginRight: -48 }}
+      animate=${{ rotate: [-4, 4, -4], opacity: props.hide ? 0 : 1 }}
+      transition=${{ rotate: { duration: 3, repeat: Infinity, ease: "easeInOut" }, opacity: { duration: 0.4 } }}>
+      <path d="M60 40 C30 -5 2 5 6 40 C2 75 30 85 60 40Z" fill="#ff5c8a" stroke="#fff" strokeWidth="4" strokeLinejoin="round"/>
+      <path d="M60 40 C90 -5 118 5 114 40 C118 75 90 85 60 40Z" fill="#ff5c8a" stroke="#fff" strokeWidth="4" strokeLinejoin="round"/>
+      <circle cx="60" cy="40" r="13" fill="#ff8fab" stroke="#fff" strokeWidth="4"/>
+    </${motion.svg}>`;
+  }
+
+  function Btn(props) {
+    return h`<${motion.button} type="button" className=${"btn " + (props.soft ? "btn-soft" : "btn-primary")}
+      whileHover=${{ scale: 1.07, rotate: props.soft ? -2 : 2 }} whileTap=${{ scale: 0.92 }}
+      onClick=${props.onClick} ref=${props.btnRef}
+      style=${props.style} animate=${props.animate} initial=${props.initial}
+      transition=${props.transition}>${props.children}<//>`;
+  }
+
+  var cardAnim = {
+    initial: { opacity: 0, y: 40, scale: 0.88, rotate: -3 },
+    animate: { opacity: 1, y: 0, scale: 1, rotate: 0 },
+    exit: { opacity: 0, y: -40, scale: 0.88, rotate: 3 },
+    transition: { type: "spring", stiffness: 220, damping: 22 }
+  };
+
+  function Card(props) {
+    return h`<${motion.div} ...${cardAnim}
+      className=${"relative w-full " + (props.wide ? "max-w-2xl" : "max-w-md md:max-w-xl") + " px-6 py-12 md:px-12 md:py-16 text-center"}
+      style=${{ zIndex: 2 }}>
+      <${motion.div} className="card-bg" style=${{ position: "absolute", inset: 0 }}
+        animate=${{ opacity: props.bare ? 0 : 1 }} transition=${{ duration: 0.5 }} />
+      <${Bow} hide=${props.bare} />
+      <div className="relative" style=${{ zIndex: 1 }}>${props.children}</div>
+    <//>`;
+  }
+
+  function Row(props) {
+    return h`<div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mt-8">${props.children}</div>`;
+  }
+
+  function Burst(props) {
+    if (!props.n) return null;
+    return h`<div key=${props.n} aria-hidden="true" style=${{ position: "fixed", left: "50%", top: "50%", zIndex: 5, pointerEvents: "none" }}>
+      ${Array.from({ length: 14 }, function (_, i) {
+        var a = (i / 14) * Math.PI * 2, d = 110 + (i % 3) * 50;
+        return h`<${motion.span} key=${i} style=${{ position: "absolute", fontSize: 26, color: "var(--accent)", marginLeft: -13, marginTop: -13 }}
+          initial=${{ x: 0, y: 0, scale: 0, opacity: 1 }}
+          animate=${{ x: Math.cos(a) * d, y: Math.sin(a) * d, scale: [0, 1.4, 0.8], opacity: [1, 1, 0], rotate: 180 }}
+          transition=${{ duration: 1.1, ease: "easeOut" }}>${i % 2 ? "♥" : "★"}<//>`;
+      })}
+    </div>`;
+  }
+
+  function VideoCard() {
+    var ref = useRef(null);
+    useEffect(function () {
+      var p = ref.current && ref.current.play && ref.current.play();
+      if (p && p.catch) p.catch(function () {});
+    }, []);
+    return h`<${Card} wide=${true}>
+      <div className="headline mb-5">هديتك 🎀</div>
+      <${motion.div} initial=${{ scale: 0.9, opacity: 0 }} animate=${{ scale: 1, opacity: 1 }} transition=${{ delay: 0.25, type: "spring" }}
+        style=${{ borderRadius: "1.75rem", border: "6px solid var(--pink)", boxShadow: "0 0 0 4px var(--card), 0 14px 34px var(--shadow)", overflow: "hidden", background: "#000", aspectRatio: "4 / 3" }}>
+        <video ref=${ref} src=${VIDEO_SRC} controls playsInline preload="auto" style=${{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}></video>
+      <//>
+      <div className="mt-5 text-2xl">💖 ✨ 💖</div>
+    <//>`;
+  }
+
+  function App() {
+    var s = useState("ask"), screen = s[0], setScreen = s[1];
+    var m = useState(null), moved = m[0], setMoved = m[1]; // {x,y} offset when "No" flies to center
+    var b = useState(0), burst = b[0], setBurst = b[1];
+    var noRef = useRef(null);
+
+    function flyNoToCenter() {
+      var el = noRef.current; if (!el) return;
+      var r = el.getBoundingClientRect();
+      setMoved({ x: window.innerWidth / 2 - (r.left + r.width / 2), y: window.innerHeight / 2 - (r.top + r.height / 2) });
+    }
+    function reset() { setBurst(function (n) { return n + 1; }); setMoved(null); setScreen("ask"); }
+
+    var view;
+    if (screen === "ask") {
+      view = h`<${Card} key="ask">
+        <div className="headline">هل انتِ سارا؟</div>
+        <${Row}>
+          <${Btn} onClick=${function () { setScreen("gift"); }}>اي<//>
+          <${Btn} soft=${true} onClick=${function () { setMoved(null); setScreen("sure"); }}>لا<//>
+        <//>
+      <//>`;
+    } else if (screen === "gift") {
+      view = h`<${Card} key="gift">
+        <div className="headline">لديك هديه من عبدالله 🎁</div>
+        <${Row}>
+          <${Btn} onClick=${function () { setScreen("video"); }}>استلام<//>
+          <${Btn} soft=${true} onClick=${function () { setScreen("tease"); }}>رفض<//>
+        <//>
+      <//>`;
+    } else if (screen === "tease") {
+      view = h`<${Card} key="tease">
+        <${motion.div} className="headline" initial=${{ scale: 0.6 }} animate=${{ scale: 1, rotate: [0, -4, 4, 0] }} transition=${{ type: "spring", stiffness: 300 }}>مو بكيفج 😂<//>
+        <${Row}><${Btn} onClick=${function () { setScreen("video"); }}>استلام<//><//>
+      <//>`;
+    } else if (screen === "sure") {
+      var go = !!moved;
+      view = h`<${Card} key="sure" bare=${go}>
+        <${motion.div} className="headline" animate=${{ opacity: go ? 0 : 1 }} transition=${{ duration: 0.35 }}>متأكدة؟ 🤔<//>
+        <${Row}>
+          <${motion.div} animate=${{ opacity: go ? 0 : 1, scale: go ? 0.3 : 1 }} transition=${{ duration: 0.35 }} style=${{ pointerEvents: go ? "none" : "auto" }}>
+            <${Btn} onClick=${flyNoToCenter2}>اي<//>
+          <//>
+          <${Btn} soft=${true} btnRef=${noRef}
+            style=${{ position: "relative", zIndex: 50 }}
+            animate=${go ? { x: moved.x, y: moved.y, scale: 1.4 } : { x: 0, y: 0, scale: 1 }}
+            transition=${{ type: "spring", stiffness: 120, damping: 16 }}
+            onClick=${function () { go ? reset() : reset(); }}>لا<//>
+        <//>
+      <//>`;
+    } else {
+      view = h`<${VideoCard} key="video" />`;
+    }
+    function flyNoToCenter2() { flyNoToCenter(); }
+
+    return h`<div className="relative flex items-center justify-center px-4 py-10" style=${{ minHeight: "100vh" }}>
+      <${Floaters} />
+      <${Burst} n=${burst} />
+      <${AnimatePresence} mode="wait">${view}<//>
+    </div>`;
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(h`<${App} />`);
+})();
+</script>
+</body>
+</html>
